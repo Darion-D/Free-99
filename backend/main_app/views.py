@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from .models import Game
+from django.views.generic.edit import CreateView
 
 
 class Home(TemplateView):
@@ -10,22 +12,25 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = 'about.html'
 
-class Game:
-    def __init__(self, title, thumbnail, description):
-        self.title = title
-        self.thumbnail = thumbnail
-        self.description = description
 
 class GamesList(TemplateView):
     template_name = 'games_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = games
+        name = self.request.GET.get('title')
+        if name !=None:
+            context['games'] = Game.objects.filter(title__icontains=name)
+            context['header'] = f'Serching for {name}'
+        else:
+            context['games'] = Game.objects.all()
+            context['header'] = f'Trending Games'
         return context
 
-games = [
-    Game('Overwatch 2', 'https://www.freetogame.com/g/540/thumbnail.jpg', 'A hero-focused first-person team shooter from Blizzard Entertainment.'),
-    Game('Diablo Immortal', 'https://www.freetogame.com/g/521/thumbnail.jpg', 'Built for mobile and also released on PC, Diablo Immortal fills in the gaps between Diablo II and III in an MMOARPG environment.')
+class GameCreate(CreateView):
+    model = Game
+    fields = ['title', 'thumbnail', 'description', 'game_url', 'genre', 'platform', 'publisher', 'developer', 'release_date']
+    template_name = 'game_create.html'
+    success_url = '/games/'
 
-]
+

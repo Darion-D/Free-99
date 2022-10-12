@@ -1,15 +1,15 @@
 from django.db import models
 
 class Game(models.Model):
-    title = models.CharField(max_length=100, default='Darion')
-    thumbnail = models.CharField(max_length=5000, default='Darion')
-    description = models.TextField(max_length=5000, default='Darion')
-    game_url = models.CharField(max_length=5000, default='Darion')
-    genre = models.CharField(max_length=5000, default='Darion')
-    platform = models.CharField(max_length=5000, default='Darion')
-    publisher = models.CharField(max_length=5000, default='Darion')
-    developer = models.CharField(max_length=5000, default='Darion')
-    release_date = models.CharField(max_length=5000, default='Darion')
+    title = models.CharField(max_length=100)
+    thumbnail = models.CharField(max_length=5000)
+    description = models.TextField(max_length=5000)
+    game_url = models.CharField(max_length=5000)
+    genre = models.CharField(max_length=5000)
+    platform = models.CharField(max_length=5000)
+    publisher = models.CharField(max_length=5000)
+    developer = models.CharField(max_length=500)
+    release_date = models.CharField(max_length=5000)
 
 
     def __str__(self):

@@ -1,9 +1,21 @@
-{% extends 'base.html' %}
-{% block title %}Game{% endblock  %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<h1 class="title">{{header}}</h1>
 
-<h1 class="title pt-5">Trending Games</h1>
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <!--  Our input will search by name of artist  -->
+      <input class="input" type="text" name="title" placeholder="title" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <!--  This anchor tag will redirect back to artist list without a query param -->
+  <a class="button is-dark" href="{% url 'games_list' %}">Clear Search</a>
+  <a class="button is-dark" href="{% url 'game_create' %}">Add Game</a>
+</form>
 <div class="gallery">
   {% for game in games %}
   <a href="">
@@ -18,12 +30,7 @@
       </div>
     </div>
   </a>
-	{% empty %}
-  <article class="message">
-    <div class="message-header">
-      <p>No Games Available</p>
-    </div>
-  </article>
   {% endfor %}
 </div>
+
 {% endblock %}
