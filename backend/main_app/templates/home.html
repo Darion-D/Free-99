@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Free99 Home</h1>
+<h2>games</h2>
+{% for game in games %}
+<p>{{game.title}}</p>
+{% endfor %}
+
+{% endblock %}

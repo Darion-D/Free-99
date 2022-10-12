@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
+from django.views.generic.base import TemplateView
+import requests
 
 
-class Home(View):
+    
+def home(request):
+    games=requests.get('https://www.freetogame.com/api/games').json()
+    return render(request, 'home.html', {'games': games})
 
-    def get(self, request):
-        return HttpResponse('Free99 Home')
+    
