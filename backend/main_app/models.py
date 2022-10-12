@@ -1,3 +1,4 @@
+from operator import mod
 from django.db import models
 
 class Game(models.Model):
@@ -17,3 +18,10 @@ class Game(models.Model):
 
     class Meta:
         ordering = ['title']
+
+class FavoritesList(models.Model):
+    title = models.CharField(max_length=150)
+    games = models.ManyToManyField(Game)
+
+    def __str__(self):
+        return self.title
