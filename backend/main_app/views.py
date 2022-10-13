@@ -66,6 +66,7 @@ class FavListGameAssoc(View):
     def get(self, request, pk, game_pk):
         # get the query param from the url
         assoc = request.GET.get("assoc")
+        print(assoc)
         if assoc == "remove":
             # get the playlist by the id and
             # remove from the join table the given song_id
@@ -73,5 +74,8 @@ class FavListGameAssoc(View):
         if assoc == "add":
             # get the playlist by the id and
             # add to the join table the given song_id
+            fav_list = FavoritesList.objects.get(pk=pk)
+            print(fav_list)
+            print(game_pk)
             FavoritesList.objects.get(pk=pk).games.add(game_pk)
-        return redirect('home')
+        return redirect('/')
