@@ -1,3 +1,31 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Free99 Home</h1>
+{% extends 'base.html' %} 
+{% block content %}
+<div class="home__playlists">
+    {% for list in gameslist %}
+
+        <div class="playlist mb-5">
+            <h3 class="title is-3 has-text-success">{{list.title}}</h3>
+            <hr />
+
+            {% for game in list.game.all %}
+
+                <div class="song">
+                    <span>{{forloop.counter}}</span>
+                    <span><b>{{game.title}}</b></span>
+                    <span>{{game.release_date}}</span>
+                    <span>
+                        <a href="{% url 'favlist_game_assoc' list.pk game.pk %}?assoc=remove" class="button is-danger is-outlined">
+                        <span class="icon is-small">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        </a>
+                    </span>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% empty %} 
+        <div class="playlist mb-5">"There are no games in this list"</div>
+    {% endfor %}
+</div>
 {% endblock %}
