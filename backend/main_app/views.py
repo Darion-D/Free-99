@@ -12,7 +12,7 @@ class Home(TemplateView):
     template_name = 'home.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["gameslist"] = FavoritesList.objects.all()
+        context["gameslist"] = FavoritesList.objects.filter(user=self.request.user)
         return context
 
 class About(TemplateView):
@@ -32,6 +32,18 @@ class GamesList(TemplateView):
             context['games'] = Game.objects.all()
             context['header'] = f'Trending Games'
         return context
+
+class FavListCreate(CreateView):
+    model = FavoritesList
+    fields = ['title']
+    template_name = 'fav_list_create.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(FavListCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('home', kwargs={'pk': self.objects.pk})
 
 class GameCreate(CreateView):
     model = Game
