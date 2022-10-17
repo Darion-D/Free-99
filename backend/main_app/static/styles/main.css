@@ -1,13 +1,13 @@
 body {
     background-color: #121212;
-    color: #ffffff;
+    color: red;
     min-height: 100vh;
   }
   
   h1,
   h2,
   h3 {
-    color: #ffffff;
+    color: red;
   }
   
   .container {
@@ -16,7 +16,7 @@ body {
   }
   
   .title {
-    color: #ffffff;
+    color: red;
   }
   
   .gallery {
@@ -45,7 +45,7 @@ body {
     top: 0;
     width: 100%;
     height: 500px;
-    background-color: #ffffff;
+    background-color: red;
     overflow: hidden;
   }
   

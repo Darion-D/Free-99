@@ -1,6 +1,8 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div class="home__playlists">
+    <a class="button is-dark" href="{% url 'fav_list_create' %}">Create List</a>
+
     {% for list in gameslist %}
 
         <div class="playlist mb-5">
