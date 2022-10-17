@@ -20,10 +20,6 @@
             </span>
         </a>
     </div>
-    <div class="detail__about">
-        <h4 class="title is-4">About</h4>
-        <p>{{game.description}}</p>
-    </div>
     <div class="dropdown">
         <div class="dropdown-trigger">
           <button
@@ -52,6 +48,19 @@
           </div>
         </div>
       </div>
+    <div class="detail__about">
+        <h4 class="title is-4">About</h4>
+        <p>{{game.description}}</p>
+        <p>Genre: {{game.genre}}</p>
+        <p>Platform: {{game.platform}}</p>
+        <p>Release Date: {{game.release_date}}</p>
+        <p>Developer: {{game.developer}}</p>
+        <p>Publisher: {{game.publisher}}</p>
+        <a href="{{game.game_url}}">
+            <p>Download</p>
+        </a>
+    </div>
+    
 </div>
 
 {% endblock %}

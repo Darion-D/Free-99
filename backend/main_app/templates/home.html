@@ -14,7 +14,7 @@
                 <div class="song">
                     <span>{{forloop.counter}}</span>
                     <span><b>{{game.title}}</b></span>
-                    <span>{{game.release_date}}</span>
+                    <span>{{game.genre}}</span>
                     <span>
                         <a href="{% url 'favlist_game_assoc' list.pk game.pk %}?assoc=remove" class="button is-danger is-outlined">
                         <span class="icon is-small">
